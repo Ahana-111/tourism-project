@@ -1,12 +1,38 @@
+<!-- Hero Section -->
 <div class="hero">
-  <video autoplay loop muted playsinline>
-    <source src="assets/images/destinations/travel.mp4" type="video/mp4">
-    Your browser does not support the video tag.
+  <video autoplay muted loop playsinline class="bg-video">
+    <source src="assets/images/destinations/travel.mp4" type="video/mp4" />
   </video>
 
-  <div class="hero-overlay">
-    <h1>Welcome to <span>Tourizio</span></h1>
+  <div class="overlay"></div>
+
+  <div class="hero-content">
+    <h1 class="animate-title">Welcome to <span>Tourizio</span></h1>
     <p>Discover amazing destinations and book your next adventure with us</p>
-    <button>Explore Now</button>
+    <a routerLink="/destinations" class="btn">Explore Now</a>
   </div>
 </div>
+
+<!-- Features Section -->
+<section class="features-section">
+  <h2>Why Choose Tourizio?</h2>
+  <div class="features">
+    <div class="feature-box">
+      <i class="fas fa-map-marked-alt"></i>
+      <h3>Best Destinations</h3>
+      <p>Handpicked places for your perfect trip</p>
+    </div>
+
+    <div class="feature-box">
+      <i class="fas fa-tags"></i>
+      <h3>Affordable Packages</h3>
+      <p>Travel smart with our budget-friendly deals</p>
+    </div>
+
+    <div class="feature-box">
+      <i class="fas fa-headset"></i>
+      <h3>24/7 Support</h3>
+      <p>We’re here to help you anytime</p>
+    </div>
+  </div>
+</section>
