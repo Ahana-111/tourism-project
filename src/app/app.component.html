@@ -1,6 +1,17 @@
-<nav>
-  <a routerLink="">Home</a> |
-  <a routerLink="destinations">Destinations</a> |
-  <a routerLink="activities">Activities</a> |
-  <a routerLink="book-tour">Book a Tour</a>
+<nav class="navbar">
+  <div class="logo">Tourizio</div>
+
+  <!-- Hamburger button (for mobile) -->
+  <button class="menu-toggle" (click)="toggleMenu()">☰</button>
+
+  <!-- Nav links -->
+  <ul [class.active]="menuOpen">
+    <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+    <li><a routerLink="/destinations" routerLinkActive="active">Destinations</a></li>
+    <li><a routerLink="/activities" routerLinkActive="active">Activities</a></li>
+    <li><a routerLink="/book-tour" routerLinkActive="active">Book a Tour</a></li>
+  </ul>
 </nav>
+
+<!-- Main content will load here -->
+<router-outlet></router-outlet>
