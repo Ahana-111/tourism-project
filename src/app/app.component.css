@@ -1,19 +1,115 @@
-nav {
-  background-color: #0077b6;
-  padding: 15px;
+/* =========================
+   Navbar Styles (Clean + Fixed + Hover Effect)
+========================= */
+.navbar {
   display: flex;
-  justify-content: center;
-  gap: 30px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 40px;
+  background: white; /* White navbar background */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-nav a {
-  color: white;
+/* Logo Section */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.logo-img {
+  height: 36px;
+  width: 36px;
+  object-fit: contain;
+}
+
+.brand-text {
+  font-size: 22px;
+  font-weight: 700;
+  color: #2c3e50;
+  letter-spacing: 0.5px;
+}
+
+/* Navigation Links */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 28px;
+  background: white; /* Keep nav area white */
+}
+
+.nav-links li {
+  background: white;
+}
+
+.nav-links a {
   text-decoration: none;
-  font-size: 18px;
-  font-weight: 500;
-  transition: color 0.3s;
+  color: #007bff; /* Blue link text */
+  font-weight: 600;
+  font-size: 17px;
+  position: relative;
+  transition: color 0.3s ease, font-weight 0.2s ease;
+  background: white;
 }
 
-nav a:hover {
-  color: #ffd60a;
+/* ✅ Hover Effect: Slightly darker & bold text */
+.nav-links a:hover {
+  color: #0056b3;
+  font-weight: 700;
+}
+
+.nav-links a.active {
+  color: #ffb703; /* Golden active link */
+  font-weight: 700;
+}
+
+/* ✅ Disable the blue underline (::after) effect completely */
+.nav-links a::after,
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  content: none !important;
+  width: 0 !important;
+  background: none !important;
+}
+
+/* Auth Buttons */
+.auth-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-login,
+.btn-signup {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-login {
+  border: 1.8px solid #007bff;
+  color: #007bff;
+  background: transparent;
+}
+
+.btn-login:hover {
+  background: #007bff;
+  color: white;
+}
+
+.btn-signup {
+  background: #007bff;
+  color: white;
+  box-shadow: 0 3px 8px rgba(0, 123, 255, 0.3);
+}
+
+.btn-signup:hover {
+  background: #0056b3;
+  box-shadow: 0 3px 8px rgba(0, 86, 179, 0.4);
 }

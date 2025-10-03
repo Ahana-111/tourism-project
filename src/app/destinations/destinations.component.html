@@ -1,78 +1,324 @@
-<h2>Explore Destinations</h2>
-<div class="cards">
-  <div class="card">
-    <img src="assets/images/destinations/maharashtra.jpg" alt="Maharashtra">
-    <h3>Maharashtra</h3>
+<div class="destinations-page">
+  <h2>Explore Our Destinations</h2>
+  <p class="subtitle">Find your next adventure in the heart of India</p>
+
+  <!-- 🔍 Search & Filters -->
+  <div class="filter-bar">
+    <input type="text" placeholder="Search by name or location..." (input)="filterDestinations()" id="searchInput">
+
+    <select id="typeFilter" (change)="filterDestinations()">
+      <option value="">All Types</option>
+      <option value="beach">Beach</option>
+      <option value="hill">Hill Station</option>
+      <option value="historical">Historical</option>
+      <option value="cultural">Cultural</option>
+    </select>
+
+    <select id="priceFilter" (change)="filterDestinations()">
+      <option value="">All Prices</option>
+      <option value="10000">Below ₹10,000</option>
+      <option value="15000">Below ₹15,000</option>
+      <option value="20000">Below ₹20,000</option>
+    </select>
+
+    <select id="sortFilter" (change)="filterDestinations()">
+      <option value="">Sort by</option>
+      <option value="low">Price: Low to High</option>
+      <option value="high">Price: High to Low</option>
+    </select>
+
+    <!-- ✅ Reset button moved here -->
+    <button class="reset-btn" (click)="resetFilters()">Reset</button>
   </div>
-  <div class="card">
-    <img src="assets/images/destinations/uttarakhand.jpg" alt="Uttarakhand">
-    <h3>Uttarakhand</h3>
+
+  <!-- ❌ No Results Message -->
+  <p id="noResults" style="display:none; text-align:center; color:red; font-weight:bold; margin-top:20px;">
+    ❌ No Results Found
+  </p>
+
+  <!-- 🗺️ Destination Cards -->
+  <div class="destinations-container" id="destinationsList">
+
+    <!-- ✅ All 26 DESTINATION CARDS -->
+    <div class="destination-card" data-type="historical">
+      <img src="assets/images/destinations/maharashtra.jpg" alt="Maharashtra">
+      <div class="card-content">
+        <h3>Maharashtra</h3>
+        <p>From Mumbai’s Gateway of India to Ajanta & Ellora caves, experience history and modernity together.</p>
+        <p class="price">₹12,500 <span>/ person</span></p>
+      </div>
+      <div class="callback-bar" (click)="openModal()">📞 Request Callback</div>
+    </div>
+
+    <div class="destination-card" data-type="hill">
+      <img src="assets/images/destinations/uttarakhand.jpg" alt="Uttarakhand">
+      <div class="card-content">
+        <h3>Uttarakhand</h3>
+        <p>Snow-capped mountains, yoga capital Rishikesh, and peaceful hill stations await you.</p>
+        <p class="price">₹9,800 <span>/ person</span></p>
+      </div>
+      <div class="callback-bar" (click)="openModal()">📞 Request Callback</div>
+    </div>
+
+    <div class="destination-card" data-type="cultural">
+      <img src="assets/images/destinations/tamilnadu.jpg" alt="Tamil Nadu">
+      <div class="card-content">
+        <h3>Tamil Nadu</h3>
+        <p>Magnificent temples, classical dance, and rich culture along the Coromandel coast.</p>
+        <p class="price">₹13,500 <span>/ person</span></p>
+      </div>
+      <div class="callback-bar" (click)="openModal()">📞 Request Callback</div>
+    </div>
+
+    <div class="destination-card" data-type="hill">
+      <img src="assets/images/destinations/kashmir.jpg" alt="Kashmir">
+      <div class="card-content">
+        <h3>Kashmir</h3>
+        <p>Paradise on earth with Dal Lake, snow, and breathtaking valleys.</p>
+        <p class="price">₹14,000 <span>/ person</span></p>
+      </div>
+      <div class="callback-bar" (click)="openModal()">📞 Request Callback</div>
+    </div>
+
+    <div class="destination-card" data-type="hill">
+      <img src="assets/images/destinations/arunachalpradesh.jpg" alt="Arunachal Pradesh">
+      <div class="card-content">
+        <h3>Arunachal Pradesh</h3>
+        <p>Unexplored mountains, monasteries, and serene landscapes of the Northeast.</p>
+        <p class="price">₹11,200 <span>/ person</span></p>
+      </div>
+      <div class="callback-bar" (click)="openModal()">📞 Request Callback</div>
+    </div>
+
+    <div class="destination-card" data-type="historical">
+      <img src="assets/images/destinations/rajasthan.jpg" alt="Rajasthan">
+      <div class="card-content">
+        <h3>Rajasthan</h3>
+        <p>Royal forts, desert safaris, and colorful culture of India’s heritage state.</p>
+        <p class="price">₹13,800 <span>/ person</span></p>
+      </div>
+      <div class="callback-bar" (click)="openModal()">📞 Request Callback</div>
+    </div>
+
+    <div class="destination-card" data-type="cultural">
+      <img src="assets/images/destinations/westbengal.jpg" alt="West Bengal">
+      <div class="card-content">
+        <h3>West Bengal</h3>
+        <p>Colonial architecture, tea gardens of Darjeeling, and Kolkata’s cultural vibe.</p>
+        <p class="price">₹9,500 <span>/ person</span></p>
+      </div>
+      <div class="callback-bar" (click)="openModal()">📞 Request Callback</div>
+    </div>
+
+    <div class="destination-card" data-type="hill">
+      <img src="assets/images/destinations/meghalaya.jpg" alt="Meghalaya">
+      <div class="card-content">
+        <h3>Meghalaya</h3>
+        <p>Living root bridges, waterfalls, and clouds touching the hills.</p>
+        <p class="price">₹10,500 <span>/ person</span></p>
+      </div>
+      <div class="callback-bar" (click)="openModal()">📞 Request Callback</div>
+    </div>
+
+    <div class="destination-card" data-type="cultural">
+      <img src="assets/images/destinations/assam.jpg" alt="Assam">
+      <div class="card-content">
+        <h3>Assam</h3>
+        <p>Tea estates, Kaziranga National Park, and the mighty Brahmaputra river.</p>
+        <p class="price">₹8,800 <span>/ person</span></p>
+      </div>
+      <div class="callback-bar" (click)="openModal()">📞 Request Callback</div>
+    </div>
+
+    <div class="destination-card" data-type="cultural">
+      <img src="assets/images/destinations/gujarat.jpg" alt="Gujarat">
+      <div class="card-content">
+        <h3>Gujarat</h3>
+        <p>Gir National Park, Somnath Temple, and the white sands of Rann of Kutch.</p>
+        <p class="price">₹12,300 <span>/ person</span></p>
+      </div>
+      <div class="callback-bar" (click)="openModal()">📞 Request Callback</div>
+    </div>
+
+    <div class="destination-card" data-type="hill">
+      <img src="assets/images/destinations/himachalpradesh.jpg" alt="Himachal Pradesh">
+      <div class="card-content">
+        <h3>Himachal Pradesh</h3>
+        <p>Shimla, Manali, and snow adventures in the Himalayas.</p>
+        <p class="price">₹10,900 <span>/ person</span></p>
+      </div>
+      <div class="callback-bar" (click)="openModal()">📞 Request Callback</div>
+    </div>
+
+    <div class="destination-card" data-type="hill">
+      <img src="assets/images/destinations/sikkim.jpg" alt="Sikkim">
+      <div class="card-content">
+        <h3>Sikkim</h3>
+        <p>Monasteries, Gangtok views, and scenic mountain passes.</p>
+        <p class="price">₹9,900 <span>/ person</span></p>
+      </div>
+      <div class="callback-bar" (click)="openModal()">📞 Request Callback</div>
+    </div>
+
+    <div class="destination-card" data-type="cultural">
+      <img src="assets/images/destinations/andhrapradesh.jpg" alt="Andhra Pradesh">
+      <div class="card-content">
+        <h3>Andhra Pradesh</h3>
+        <p>Temples of Tirupati and golden beaches of Visakhapatnam.</p>
+        <p class="price">₹11,400 <span>/ person</span></p>
+      </div>
+      <div class="callback-bar" (click)="openModal()">📞 Request Callback</div>
+    </div>
+
+    <div class="destination-card" data-type="cultural">
+      <img src="assets/images/destinations/madhyapradesh.jpg" alt="Madhya Pradesh">
+      <div class="card-content">
+        <h3>Madhya Pradesh</h3>
+        <p>Khajuraho temples, national parks, and historical forts.</p>
+        <p class="price">₹13,000 <span>/ person</span></p>
+      </div>
+      <div class="callback-bar" (click)="openModal()">📞 Request Callback</div>
+    </div>
+
+    <div class="destination-card" data-type="cultural">
+      <img src="assets/images/destinations/karnataka.jpg" alt="Karnataka">
+      <div class="card-content">
+        <h3>Karnataka</h3>
+        <p>Silicon Valley of India, Hampi ruins, and lush Coorg coffee plantations.</p>
+        <p class="price">₹12,700 <span>/ person</span></p>
+      </div>
+      <div class="callback-bar" (click)="openModal()">📞 Request Callback</div>
+    </div>
+
+    <div class="destination-card" data-type="historical">
+      <img src="assets/images/destinations/uttarpradesh.jpg" alt="Uttar Pradesh">
+      <div class="card-content">
+        <h3>Uttar Pradesh</h3>
+        <p>The Taj Mahal, Varanasi ghats, and Lucknow’s royal culture.</p>
+        <p class="price">₹14,500 <span>/ person</span></p>
+      </div>
+      <div class="callback-bar" (click)="openModal()">📞 Request Callback</div>
+    </div>
+
+    <div class="destination-card" data-type="beach">
+      <img src="assets/images/destinations/goa.jpg" alt="Goa">
+      <div class="card-content">
+        <h3>Goa</h3>
+        <p>Sun, sand, shacks and a vibrant nightlife.</p>
+        <p class="price">₹9,200 <span>/ person</span></p>
+      </div>
+      <div class="callback-bar" (click)="openModal()">📞 Request Callback</div>
+    </div>
+
+    <div class="destination-card" data-type="cultural">
+      <img src="assets/images/destinations/odisha.jpg" alt="Odisha">
+      <div class="card-content">
+        <h3>Odisha</h3>
+        <p>Konark Sun Temple, Puri beaches, and tribal art.</p>
+        <p class="price">₹10,600 <span>/ person</span></p>
+      </div>
+      <div class="callback-bar" (click)="openModal()">📞 Request Callback</div>
+    </div>
+
+    <div class="destination-card" data-type="cultural">
+      <img src="assets/images/destinations/kerala.jpg" alt="Kerala">
+      <div class="card-content">
+        <h3>Kerala</h3>
+        <p>Backwaters of Alleppey, lush greenery, and houseboat cruises.</p>
+        <p class="price">₹11,800 <span>/ person</span></p>
+      </div>
+      <div class="callback-bar" (click)="openModal()">📞 Request Callback</div>
+    </div>
+
+    <div class="destination-card" data-type="historical">
+      <img src="assets/images/destinations/punjab.jpg" alt="Punjab">
+      <div class="card-content">
+        <h3>Punjab</h3>
+        <p>Golden Temple, vibrant culture, and rich history.</p>
+        <p class="price">₹10,200 <span>/ person</span></p>
+      </div>
+      <div class="callback-bar" (click)="openModal()">📞 Request Callback</div>
+    </div>
+
+    <div class="destination-card" data-type="cultural">
+      <img src="assets/images/destinations/nagaland.jpg" alt="Nagaland">
+      <div class="card-content">
+        <h3>Nagaland</h3>
+        <p>Tribal festivals, Hornbill celebrations, and scenic hills of the Northeast.</p>
+        <p class="price">₹11,000 <span>/ person</span></p>
+      </div>
+      <div class="callback-bar" (click)="openModal()">📞 Request Callback</div>
+    </div>
+
+    <div class="destination-card" data-type="hill">
+      <img src="assets/images/destinations/manipur.jpg" alt="Manipur">
+      <div class="card-content">
+        <h3>Manipur</h3>
+        <p>Loktak Lake, floating islands, and a blend of rich culture and natural beauty.</p>
+        <p class="price">₹10,500 <span>/ person</span></p>
+      </div>
+      <div class="callback-bar" (click)="openModal()">📞 Request Callback</div>
+    </div>
+
+    <div class="destination-card" data-type="beach">
+      <img src="assets/images/destinations/pondicherry.jpg" alt="Pondicherry">
+      <div class="card-content">
+        <h3>Pondicherry</h3>
+        <p>French colonial charm, serene beaches, and spiritual Auroville.</p>
+        <p class="price">₹9,800 <span>/ person</span></p>
+      </div>
+      <div class="callback-bar" (click)="openModal()">📞 Request Callback</div>
+    </div>
+
+    <div class="destination-card" data-type="beach">
+      <img src="assets/images/destinations/lakshadweep.jpg" alt="Lakshadweep Islands">
+      <div class="card-content">
+        <h3>Lakshadweep Islands</h3>
+        <p>Crystal clear waters, coral reefs, and untouched island beauty.</p>
+        <p class="price">₹16,000 <span>/ person</span></p>
+      </div>
+      <div class="callback-bar" (click)="openModal()">📞 Request Callback</div>
+    </div>
+
+    <div class="destination-card" data-type="beach">
+      <img src="assets/images/destinations/andaman.jpg" alt="Andaman and Nicobar Islands">
+      <div class="card-content">
+        <h3>Andaman & Nicobar Islands</h3>
+        <p>Pristine beaches, scuba diving, and tropical island escapes.</p>
+        <p class="price">₹19,000 <span>/ person</span></p>
+      </div>
+      <div class="callback-bar" (click)="openModal()">📞 Request Callback</div>
+    </div>
+
+    <div class="destination-card" data-type="hill">
+      <img src="assets/images/destinations/mizoram.jpg" alt="Mizoram">
+      <div class="card-content">
+        <h3>Mizoram</h3>
+        <p>Rolling hills, vibrant tribal culture, and serene landscapes of Northeast India.</p>
+        <p class="price">₹10,800 <span>/ person</span></p>
+      </div>
+      <div class="callback-bar" (click)="openModal()">📞 Request Callback</div>
+    </div>
+
   </div>
-  <div class="card">
-    <img src="assets/images/destinations/tamilnadu.jpg" alt="Tamil Nadu">
-    <h3>Tamil Nadu</h3>
+</div>
+
+<!-- 📞 Callback Modal -->
+<div id="callbackModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" (click)="closeModal()">&times;</span>
+    <h3>Request a Callback</h3>
+    <input type="text" id="callbackName" placeholder="Name">
+    <input type="tel" id="callbackPhone" placeholder="Phone Number">
+    <input type="email" id="callbackEmail" placeholder="Email">
+    <button (click)="submitCallback()">Submit</button>
+    <p id="successMessage" style="display:none; color:green; font-weight:bold; margin-top:10px;">
+      ✅ Request received! We'll contact you soon.
+    </p>
   </div>
-  <div class="card">
-    <img src="assets/images/destinations/kashmir.jpg" alt="Kashmir">
-    <h3>Kashmir</h3>
-  </div>
-  <div class="card">
-    <img src="assets/images/destinations/arunachalpradesh.jpg" alt="Arunachal Pradesh">
-    <h3>Arunachal Pradesh</h3>
-  </div>
-  <div class="card">
-    <img src="assets/images/destinations/rajasthan.jpg" alt="Rajasthan">
-    <h3>Rajasthan</h3>
-  </div>
-  <div class="card">
-    <img src="assets/images/destinations/westbengal.jpg" alt="West Bengal">
-    <h3>West Bengal</h3>
-  </div>
-  <div class="card">
-    <img src="assets/images/destinations/meghalaya.jpg" alt="Meghalaya">
-    <h3>Meghalaya</h3>
-  </div>
-  <div class="card">
-    <img src="assets/images/destinations/assam.jpg" alt="Assam">
-    <h3>Assam</h3>
-  </div>
-  <div class="card">
-    <img src="assets/images/destinations/gujarat.jpg" alt="Gujarat">
-    <h3>Gujarat</h3>
-  </div>
-  <div class="card">
-    <img src="assets/images/destinations/himachalpradesh.jpg" alt="Himachal Pradesh">
-    <h3>Himachal Pradesh</h3>
-  </div>
-  <div class="card">
-    <img src="assets/images/destinations/sikkim.jpg" alt="Sikkim">
-    <h3>Sikkim</h3>
-  </div>
-  <div class="card">
-    <img src="assets/images/destinations/andhrapradesh.jpg" alt="Andhra Pradesh">
-    <h3>Andhra Pradesh</h3>
-  </div>
-  <div class="card">
-    <img src="assets/images/destinations/madhyapradesh.jpg" alt="Madhya Pradesh">
-    <h3>Madhya Pradesh</h3>
-  </div><div class="card">
-    <img src="assets/images/destinations/karnataka.jpg" alt="Karnataka">
-    <h3>Karnataka</h3>
-  </div>
-  <div class="card">
-    <img src="assets/images/destinations/uttarpradesh.jpg" alt="Uttar Pradesh">
-    <h3>Uttar Pradesh</h3>
-  </div>
-  <div class="card">
-    <img src="assets/images/destinations/goa.jpg" alt="Goa">
-    <h3>Goa</h3>
-  </div>
-  <div class="card">
-    <img src="assets/images/destinations/odisha.jpg" alt="Odisha">
-    <h3>Odisha</h3>
-  </div>
-  <div class="card">
-    <img src="assets/images/destinations/delhi.jpg" alt="Delhi">
-    <h3>Delhi</h3>
-  </div>
+</div>
+
+<!-- ✅ Popup Message -->
+<div id="popupMessage" class="popup-message">
+  ✅ Request received! We'll contact you soon.
 </div>

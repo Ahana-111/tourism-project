@@ -1,28 +1,40 @@
-<nav class="navbar">
-  <div class="logo">Tourizio</div>
+<nav class="navbar" aria-label="Main Navigation">
+  <!-- Logo + Brand -->
+  <div class="logo">
+    <img src="assets/logo.png" alt="Tourizio Logo" class="logo-img" />
+    <span class="brand-text">Tourizio</span>
+  </div>
 
-  <!-- Hamburger button (for mobile) -->
-  <button class="menu-toggle" (click)="toggleMenu()">☰</button>
+  <!-- Navigation Links -->
+  <nav class="nav-menu">
+    <ul class="nav-links">
+      <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+      <li><a routerLink="/destinations" routerLinkActive="active">Destinations</a></li>
+      <li><a routerLink="/activities" routerLinkActive="active">Activities</a></li>
+      <li><a routerLink="/book-tour" routerLinkActive="active">Book a Tour</a></li>
+    </ul>
+  </nav>
 
-  <!-- Nav links -->
-  <ul [class.active]="menuOpen">
-    <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
-    <li><a routerLink="/destinations" routerLinkActive="active">Destinations</a></li>
-    <li><a routerLink="/activities" routerLinkActive="active">Activities</a></li>
-    <li><a routerLink="/book-tour" routerLinkActive="active">Book a Tour</a></li>
-  </ul>
+  <!-- Login / Signup Buttons -->
+  <div class="auth-buttons">
+    <a routerLink="/login" class="btn-login">Login</a>
+    <a routerLink="/signup" class="btn-signup">Sign Up</a>
+  </div>
 </nav>
 
-<!-- Main content will load here -->
+<!-- Main content loads here -->
 <router-outlet></router-outlet>
+
 <!-- Footer Section -->
 <footer class="footer">
   <div class="footer-content">
+    <!-- About Section -->
     <div class="footer-about">
       <h3>Tourizio</h3>
       <p>Your trusted travel partner for unforgettable adventures.</p>
     </div>
 
+    <!-- Quick Links -->
     <div class="footer-links">
       <h4>Quick Links</h4>
       <ul>
@@ -33,11 +45,14 @@
       </ul>
     </div>
 
+    <!-- Social Links -->
     <div class="footer-social">
       <h4>Follow Us</h4>
-      <a href="#"><i class="fab fa-facebook-f"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-twitter"></i></a>
+      <ul>
+        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+      </ul>
     </div>
   </div>
 
