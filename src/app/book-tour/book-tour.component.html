@@ -1,64 +1,98 @@
 <div class="booking-page">
+  <!-- Background overlay for image and soft blur -->
+  <div class="background-overlay"></div>
+
+  <!-- Booking Container -->
   <div class="booking-container">
-    <h2>Book a Tour</h2>
-    <form>
-      <div class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" id="name" placeholder="Enter your name" required />
-      </div>
+    <div class="booking-form-section">
+      <h2>Book Your Tour</h2>
 
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" placeholder="Enter your email" required />
-      </div>
+      <form [formGroup]="bookingForm" (ngSubmit)="onSubmit($event)">
+        <div class="form-grid">
+          
+          <!-- Destination -->
+          <div>
+            <label>Destination</label>
+            <select formControlName="destination">
+              <option value="" disabled selected hidden>Search your destination</option>
+              <option *ngFor="let place of destinations" [value]="place.name">
+                {{ place.name }}
+              </option>
+            </select>
+            <div class="error" *ngIf="bookingForm.get('destination')?.touched && bookingForm.get('destination')?.invalid">
+              <small>Destination is required.</small>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <label for="phone">Phone Number:</label>
-        <input type="tel" id="phone" placeholder="Enter your phone number" required />
-      </div>
+          <!-- Full Name -->
+          <div>
+            <label>Full Name</label>
+            <input formControlName="fullName" type="text" placeholder="Enter your full name" />
+            <div class="error" *ngIf="bookingForm.get('fullName')?.touched && bookingForm.get('fullName')?.invalid">
+              <small>Full name is required.</small>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <label for="date">Travel Date:</label>
-        <input type="date" id="date" required />
-      </div>
+          <!-- Email -->
+          <div>
+            <label>Email</label>
+            <input formControlName="email" type="email" placeholder="Enter your email" />
+            <div class="error" *ngIf="bookingForm.get('email')?.touched && bookingForm.get('email')?.invalid">
+              <small *ngIf="bookingForm.get('email')?.errors?.['required']">Email is required.</small>
+              <small *ngIf="bookingForm.get('email')?.errors?.['email']">Please enter a valid email address.</small>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <label for="travelers">Number of Travelers:</label>
-        <input type="number" id="travelers" min="1" max="20" value="1" required />
-      </div>
+          <!-- Phone -->
+          <div>
+            <label>Phone</label>
+            <input formControlName="phone" type="tel" placeholder="Enter 10-digit number" />
+            <div class="error" *ngIf="bookingForm.get('phone')?.touched && bookingForm.get('phone')?.invalid">
+              <small *ngIf="bookingForm.get('phone')?.errors?.['required']">Phone number is required.</small>
+              <small *ngIf="bookingForm.get('phone')?.errors?.['pattern']">Please enter a valid 10-digit phone number.</small>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <label for="destination">Destination:</label>
-        <select id="destination" required>
-          <option value="">-- Select Destination --</option>
-          <option>Maharashtra</option>
-          <option>Uttarakhand</option>
-          <option>Tamil Nadu</option>
-          <option>Kashmir</option>
-          <option>Delhi</option>
-          <option>Arunachal Pradesh</option>
-          <option>Madhya Pradesh</option>
-          <option>Uttar Pradesh</option>
-          <option>Karnataka</option>
-          <option>Goa</option>
-          <option>Odisha</option>
-          <option>Gujarat</option>
-          <option>West Bengal</option>
-          <option>Assam</option>
-          <option>Meghalaya</option>
-          <option>Sikkim</option>
-          <option>Himachal Pradesh</option>
-          <option>Rajasthan</option>
-          <option>Andhra Pradesh</option>
-        </select>
-      </div>
+          <!-- Travel Date -->
+          <div>
+            <label>Travel Date</label>
+            <input formControlName="travelDate" type="date" />
+            <div class="error" *ngIf="bookingForm.get('travelDate')?.touched && bookingForm.get('travelDate')?.invalid">
+              <small>Travel date is required.</small>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <label for="requests">Special Requests:</label>
-        <textarea id="requests" rows="3" placeholder="Any preferences or requests?"></textarea>
-      </div>
+          <!-- Number of Travelers -->
+          <div>
+            <label>Number of Travelers</label>
+            <input formControlName="travelers" type="number" min="1" />
+            <div class="error" *ngIf="bookingForm.get('travelers')?.touched && bookingForm.get('travelers')?.invalid">
+              <small>Number of travelers is required.</small>
+            </div>
+          </div>
 
-      <button type="submit">Book Now</button>
-    </form>
+          <!-- Special Requests -->
+          <div class="full-width">
+            <label>Special Requests <small>(optional)</small></label>
+            <textarea formControlName="requests" rows="2" placeholder="Write your message"></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="book-btn">Confirm Booking</button>
+      </form>
+    </div>
+
+    <!-- Booking Summary -->
+    <div class="booking-summary" *ngIf="selectedDestination">
+      <h3>Booking Summary</h3>
+      <img [src]="selectedDestination.image" [alt]="selectedDestination.name" />
+      <div class="summary-info">
+        <h4>{{ selectedDestination.name }}</h4>
+        <p>{{ selectedDestination.location }}</p>
+        <p>₹{{ selectedDestination.price | number }} per person</p>
+        <hr />
+        <p><strong>Total:</strong> ₹{{ totalPrice | number }}</p>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,0 +1,29 @@
+<div class="contact-page">
+  <div class="background-overlay"></div>
+
+  <div class="contact-container">
+    <h2>Contact Us</h2>
+    <p class="intro-text">Have questions or need help planning your trip? Send us a message below!</p>
+
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+      <div class="form-grid">
+        <div>
+          <label>Full Name</label>
+          <input formControlName="name" type="text" placeholder="Enter your full name" />
+        </div>
+
+        <div>
+          <label>Email</label>
+          <input formControlName="email" type="email" placeholder="Enter your email address" />
+        </div>
+
+        <div>
+          <label>Message</label>
+          <textarea formControlName="message" rows="4" placeholder="Write your message"></textarea>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+  </div>
+</div>
